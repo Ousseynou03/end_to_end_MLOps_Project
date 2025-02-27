@@ -1,3 +1,7 @@
 venv
 .venv
 .env
+build
+dist
+.idea
+NetworkSecurity.egg-info

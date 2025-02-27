@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.10 (networksecurity)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (networksecurity)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (realtime_data_streaming)" project-jdk-type="Python SDK" />
 </project>
