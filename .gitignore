@@ -4,4 +4,6 @@ venv
 build
 dist
 .idea
+logs
+Artifacts
 NetworkSecurity.egg-info
