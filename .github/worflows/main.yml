@@ -1,0 +1,25 @@
+name: worflows
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+      - 'CONTRIBUTING.md'
+
+jobs:
+  integration:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Lint code
+        uses: echo "Linting repositories"
+
+      - name: Run unit tests
+        uses: echo "Running unit tests"
