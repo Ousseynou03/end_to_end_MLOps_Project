@@ -14,7 +14,6 @@ from networksecurity.utils.main_utils.utils import save_object,load_object
 from networksecurity.utils.main_utils.utils import load_numpy_array_data,evaluate_models
 from networksecurity.utils.ml_utils.metric.classification_metric import get_classification_score
 
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsClassifier
@@ -25,7 +24,9 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 import mlflow
-from urllib.parse import urlparse
+#from urllib.parse import urlparse
+import dagshub
+dagshub.init(repo_owner='dioneousseynou03', repo_name='end_to_end_MLOps_Project', mlflow=True)
 
 
 
@@ -37,10 +38,24 @@ class ModelTrainer:
             self.data_transformation_artifact=data_transformation_artifact
         except Exception as e:
             raise NetworkSecurityException(e,sys)
+        
+    def track_mlflow(self,best_model,classificationmetric):
+        with mlflow.start_run():
+            f1_score=classificationmetric.f1_score
+            precision_score=classificationmetric.precision_score
+            recall_score=classificationmetric.recall_score
+
+            
+
+            mlflow.log_metric("f1_score",f1_score)
+            mlflow.log_metric("precision",precision_score)
+            mlflow.log_metric("recall_score",recall_score)
+            mlflow.sklearn.log_model(best_model,"model")
+
+            mlflow.sklearn.log_model(best_model, "model")
 
 
-
-
+        
     def train_model(self,X_train,y_train,x_test,y_test):
         models = {
                 "Random Forest": RandomForestClassifier(verbose=1),
@@ -74,9 +89,11 @@ class ModelTrainer:
                 'learning_rate':[.1,.01,.001],
                 'n_estimators': [8,16,32,64,128,256]
             }
+            
         }
         model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=x_test,y_test=y_test,
                                           models=models,param=params)
+        
         ## To get best model score from dict
         best_model_score = max(sorted(model_report.values()))
 
@@ -89,22 +106,26 @@ class ModelTrainer:
         y_train_pred=best_model.predict(X_train)
 
         classification_train_metric=get_classification_score(y_true=y_train,y_pred=y_train_pred)
-
-
+        
+        ## Track the experiements with mlflow
+        self.track_mlflow(best_model,classification_train_metric)
 
 
         y_test_pred=best_model.predict(x_test)
         classification_test_metric=get_classification_score(y_true=y_test,y_pred=y_test_pred)
 
+        self.track_mlflow(best_model,classification_test_metric)
+
         preprocessor = load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
             
         model_dir_path = os.path.dirname(self.model_trainer_config.trained_model_file_path)
         os.makedirs(model_dir_path,exist_ok=True)
-        Network_Model=NetworkModel(preprocessor=preprocessor,model=best_model)
 
+        Network_Model=NetworkModel(preprocessor=preprocessor,model=best_model)
         save_object(self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
         #model pusher
-       # save_object("final_model/model.pkl",best_model)
+        save_object("final_model/model.pkl",best_model)
+        
 
         ## Model Trainer Artifact
         model_trainer_artifact=ModelTrainerArtifact(trained_model_file_path=self.model_trainer_config.trained_model_file_path,
@@ -115,15 +136,13 @@ class ModelTrainer:
         return model_trainer_artifact
 
 
+        
 
 
-
-
-
-
-
-
-
+       
+    
+    
+        
     def initiate_model_trainer(self)->ModelTrainerArtifact:
         try:
             train_file_path = self.data_transformation_artifact.transformed_train_file_path
@@ -146,4 +165,3 @@ class ModelTrainer:
             
         except Exception as e:
             raise NetworkSecurityException(e,sys)
-
