@@ -9,6 +9,8 @@ pyaml
 mlflow
 fastapi
 dagshub
+uvicorn
+python-multipart
 
 ### mongodb+srv://weuzinho96:<db_password>@cluster0.b2dnl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 ##-e .
