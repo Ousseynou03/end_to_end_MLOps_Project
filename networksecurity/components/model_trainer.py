@@ -24,9 +24,19 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 import mlflow
-#from urllib.parse import urlparse
+from urllib.parse import urlparse
 import dagshub
-dagshub.init(repo_owner='dioneousseynou03', repo_name='end_to_end_MLOps_Project', mlflow=True)
+#dagshub.init(repo_owner='dioneousseynou03', repo_name='end_to_end_MLOps_Project', mlflow=True)
+import dagshub
+import mlflow
+
+
+# Initialiser DagsHub avec MLflow
+#dagshub.init(repo_owner="dioneousseynou03", repo_name="end_to_end_MLOps_Project", mlflow=True)
+
+# Définir l'URI de tracking pour MLflow
+#mlflow.set_tracking_uri("https://dagshub.com/dioneousseynou03/end_to_end_MLOps_Project.mlflow")
+
 
 
 
