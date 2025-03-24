@@ -32,7 +32,7 @@ import mlflow
 
 
 # Initialiser DagsHub avec MLflow
-#dagshub.init(repo_owner="dioneousseynou03", repo_name="end_to_end_MLOps_Project", mlflow=True)
+dagshub.init(repo_owner="dioneousseynou03", repo_name="end_to_end_MLOps_Project", mlflow=True)
 
 # Définir l'URI de tracking pour MLflow
 #mlflow.set_tracking_uri("https://dagshub.com/dioneousseynou03/end_to_end_MLOps_Project.mlflow")
