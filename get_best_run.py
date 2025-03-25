@@ -1,7 +1,5 @@
 import mlflow
 import pandas as pd
-import os
-import pickle
 
 # Configurer MLflow pour pointer vers DAGsHub
 MLFLOW_TRACKING_URI = "https://dagshub.com/dioneousseynou03/end_to_end_MLOps_Project.mlflow"

@@ -11,6 +11,7 @@ fastapi
 dagshub
 uvicorn
 python-multipart
+pandas
 
 ### mongodb+srv://weuzinho96:<db_password>@cluster0.b2dnl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 ##-e .
