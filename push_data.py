@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-uri = "mongodb+srv://weuzinho96:admin123@cluster0.b2dnl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+uri = "mongodb+srv://username:password@cluster0.b2dnl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 print(uri)
 
 import certifi

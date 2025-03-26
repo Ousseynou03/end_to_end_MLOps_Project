@@ -4,7 +4,7 @@ import os
 import certifi
 ca = certifi.where()
 
-mongo_db_url = "mongodb+srv://weuzinho96:admin123@cluster0.b2dnl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+mongo_db_url = "mongodb+srv://username:password@cluster0.b2dnl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 print(mongo_db_url)
 
 import pymongo

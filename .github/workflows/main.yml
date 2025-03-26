@@ -98,6 +98,7 @@ jobs:
           if docker ps -q --filter "name=networksecurity" | grep -q .; then
             docker stop networksecurity
             docker rm -fv networksecurity
+            docker rmi -f ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
           else
             echo "No running container found, skipping stop and remove step."
           fi
