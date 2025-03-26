@@ -92,3 +92,5 @@ Envoi du modèle vers AWS S3
 Construction et envoi d’une image Docker vers AWS ECR
 
 Déploiement du dernier conteneur sur AWS EC2
+
+<img src="FastAPI.png" alt="FastAPI" width="600">
