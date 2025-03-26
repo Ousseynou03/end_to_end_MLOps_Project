@@ -93,9 +93,15 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Stop and remove  container if running
+      - name: Stop and remove container if running
         run: |
-         docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm -fv networksecurity
+          if docker ps -q --filter "name=networksecurity" | grep -q .; then
+            docker stop networksecurity
+            docker rm -fv networksecurity
+          else
+            echo "No running container found, skipping stop and remove step."
+          fi
+
       
       - name: Pull latest images
         run: |
