@@ -1,5 +1,6 @@
 ### Network Security Projects for phishing Data - MLOps end to end end project
 
+![Architecture du Pipeline MLOps](Archi deployment MLOps.png)
 ### Pipeline CI/CD MLOps
 ## Introduction
 Ce projet met en œuvre un pipeline MLOps de bout en bout, automatisant l'extraction, la transformation, l'entraînement et le déploiement d'un modèle de machine learning. L'ensemble du workflow est géré via GitHub Actions, les services AWS, MLflow et Docker, garantissant une intégration et un déploiement continus.
