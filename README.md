@@ -1,4 +1,4 @@
-### Network Security Projects for phishing Data - MLOps end to end end project
+### Phishing Data - MLOps end to end end project
 
 <img src="Archi deployment MLOps.png" alt="Architecture du Pipeline MLOps" width="600">
 
